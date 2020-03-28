@@ -16,6 +16,7 @@
 }
 
 .game-board {
+  position: fixed;
   height: 600px;
   width: 600px;
   background-color:whitesmoke;
@@ -23,10 +24,10 @@
 }
 
 .circle {
-  --radius: 20px;
+  --radius: 50px;
   height: var(--radius);
   width: var(--radius);
   border-radius: 50%;
-  background-color: salmon;
+  background-color: rgba(34, 184, 235, 0.849);
   position: absolute;
 }
