@@ -21,3 +21,12 @@
   background-color:whitesmoke;
   box-shadow: inset 0 0 5px black;
 }
+
+.circle {
+  --radius: 20px;
+  height: var(--radius);
+  width: var(--radius);
+  border-radius: 50%;
+  background-color: salmon;
+  position: absolute;
+}

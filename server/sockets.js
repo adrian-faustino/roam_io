@@ -1,3 +1,5 @@
+// THIS IS THE SERVER SIDE
+
 const SocketIO = require('socket.io');
 
 
@@ -7,5 +9,9 @@ module.exports = (server) => {
 
   io.on('connection', (client) => {
     console.log(`Connection from client with ID: ${client.id}.`);
+
+    client.on('coordinate', data => {
+      io.emit('drawThis', data);
+    });
   });
 };
