@@ -1,6 +1,22 @@
 // THIS IS THE CLIENT SIDE
 
 const socket = io();
+const miceDB = {};
+
+// generate circle provided by server
+socket.on('generateCircle', data => {
+  const newDiv = $('<div></div>')
+    .addClass('circle')
+    .attr('id', data.uID)
+    .css(`left`, data.coord.x)
+    .css('top', data.coord.y)
+  $('.game-board').append(newDiv);
+
+  // pop on click - transmit
+  newDiv.on('click', () => {
+    socket.emit('delete', data.uID);
+  });
+});
 
 // mouse coordinates
 $('.game-board').on('mousemove', e => {
@@ -11,28 +27,29 @@ $('.game-board').on('mousemove', e => {
   socket.emit('coordinate', data);
 });
 
-// socket.on('drawThis', data => {
-//   const newDiv = $('<div></div>')
-//     .addClass('circle')
-//     .css(`left`, data.x)
-//     .css('top', data.y);
+socket.on('drawThis', data => {
+  let mouse = miceDB[data.userID];
+  if (!mouse) {
+    console.log('Created new!');
+    const span = document.createElement('span');
+    span.style.position = 'absolute';
+    span.style.pointerEvents = 'none';
+    span.textContent = '🔥' + data.userID;
+    miceDB[data.userID] = span;
+    mouse = span;
+    document.body.appendChild(span);
+  }
 
-//   $('.game-board').append(newDiv);
-// });
-
-socket.on('generateCircle', data => {
-  const newDiv = $('<div></div>')
-    .addClass('circle')
-    .attr('id', data.uID)
-    .css(`left`, data.coord.x)
-    .css('top', data.coord.y)
-  $('.game-board').append(newDiv);
-
-  newDiv.on('click', () => {
-    socket.emit('delete', data.uID);
-  });
+  updatePos(mouse, data.coord);
 });
 
+// pop on click - receive
 socket.on('delete', data => {
   $(`#${data}`).remove();
 });
+
+function updatePos(element, coord) {
+  element.style.top = coord.y + 'px';
+  element.style.left = coord.x + 'px';
+  console.log(coord.x, coord.y);
+}

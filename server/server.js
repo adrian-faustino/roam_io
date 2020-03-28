@@ -1,6 +1,5 @@
 const express = require('express');
 const http = require('http');
-const gameUtil = require('./game');
 const PORT = 3000;
 
 const sockets = require('./sockets');
