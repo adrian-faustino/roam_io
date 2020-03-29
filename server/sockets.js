@@ -7,10 +7,12 @@ const gameUtil = require('./game');
 // this file exports a function, takes the server and does something with it
 module.exports = (server) => {
   const io = SocketIO(server);
-  const usersDB = {};
+  const gameState = {};
 
   io.on('connection', (client) => {
-    console.log(`Connection from client with ID: ${client.id}.`);
+    // console.log(`Connection from client with ID: ${client.id}.`);
+    gameState[client.id] = { username: 'Anonymous'};
+    console.log(gameState);
     
     // generate and delete circle for everyone
     setInterval(() => {
@@ -41,6 +43,7 @@ module.exports = (server) => {
 
     // change username of cursor
     client.on('change-username', username => {
+      gameState[client.id] = { username: `${username}` };
       const data = {
         username: username,
         userID: client.id
@@ -50,7 +53,13 @@ module.exports = (server) => {
 
     // delete on disconnection
     client.on('disconnect', () => {
+      delete gameState[client.id];
       io.emit('socket-disconnect', client.id);
     });
+
+    // broadcast gameState
+    setInterval(() => {
+      io.emit('game-state', gameState);
+    }, 3000);
   });
 };

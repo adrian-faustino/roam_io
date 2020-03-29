@@ -3,6 +3,7 @@
 const socket = io();
 const miceDB = {};
 const clientData = {}; // store user score here later?
+let useScore = 0;
 
 // generate circle provided by server
 socket.on('generateCircle', data => {
@@ -75,6 +76,18 @@ socket.on('change-username', data => {
     .css('font-weight', 'bold')
 });
 
+// recieve game state
+socket.on('game-state', data => {
+  console.log('Game state: ', data);
+  for (let clientID in data) {
+    let li = document.getElementById(clientID);
+    if (!li) {
+      li = addEntry(clientID);
+    }
+    $(li).text(data[clientID].username);
+  }
+});
+
 // helper functions
 function updatePos(element, coord) {
     element.style.top = coord.y + 'px';
@@ -83,4 +96,12 @@ function updatePos(element, coord) {
 
 function popAnimation(element) {
   $(element).addClass('pop');
+}
+
+function addEntry(clientID) {
+  const newLi = $('<li></li>')
+    .attr('id', clientID);
+
+  $('.leaderboard').append(newLi);
+  return newLi;
 }
