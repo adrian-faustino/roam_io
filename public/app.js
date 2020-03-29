@@ -2,7 +2,7 @@
 
 const socket = io();
 const miceDB = {};
-const clientData = {};
+const clientData = {}; // store user score here later?
 
 // generate circle provided by server
 socket.on('generateCircle', data => {
@@ -15,6 +15,7 @@ socket.on('generateCircle', data => {
 
   // pop on click - transmit
   newDiv.on('click', () => {
+    popAnimation(newDiv);
     socket.emit('delete', data.uID);
   });
 });
@@ -46,7 +47,10 @@ socket.on('drawThis', data => {
 
 // pop on click - receive
 socket.on('delete', data => {
-  $(`#${data}`).remove();
+  const targetDiv = $(`#${data}`);
+  setTimeout(() => {
+    $(targetDiv).remove();
+  }, 500);
 });
 
 // delete socks that disconnected
@@ -74,4 +78,8 @@ socket.on('change-username', data => {
 function updatePos(element, coord) {
     element.style.top = coord.y + 'px';
     element.style.left = coord.x + 'px';
+}
+
+function popAnimation(element) {
+  $(element).addClass('pop');
 }

@@ -17,6 +17,7 @@ body {
   background-color: rgba(66, 65, 65, 0.486);
 }
 
+/* circle style and animation */
 .circle {
   --radius: 50px;
   height: var(--radius);
@@ -24,6 +25,29 @@ body {
   border-radius: 50%;
   background-color: rgba(0, 128, 0, 0.87);
   position: absolute;
+}
+.circle.pop {
+  pointer-events: none;
+  animation: pop 0.5s;
+}
+
+@keyframes pop {
+  0% {
+    background-color: white;
+    transform: scale(1.2);
+  }
+  50% {
+    background-color: red;
+    transform: scale(2);
+  }
+  75% {
+    background-color: orange;
+    transform: scale(1.6);
+  }
+  80% {
+    background-color: white;
+    transform: scale(0.1);
+  }
 }
 
 /* user input */
