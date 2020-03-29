@@ -8,4 +8,5 @@
 [] add circle animation (growing larger until dissapears)
 [x] add circle pop animation? with score fading as you click
 [] ISSUE: new user logs on, everyone else's mouse is 'Anonymous'
+[] ISSUE: need to scale generation of cicles based on the users playing
 [] Lvl system? The more you kill the higher your lvl -> scatter shot

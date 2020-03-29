@@ -8,6 +8,7 @@ const gameUtil = require('./game');
 module.exports = (server) => {
   const io = SocketIO(server);
   const gameState = {};
+  let interval;
 
   io.on('connection', (client) => {
     console.log(`Connection from client with ID: ${client.id}.`);
@@ -17,7 +18,7 @@ module.exports = (server) => {
     };
     
     // generate and delete circle for everyone
-    setInterval(() => {
+    interval = setInterval(() => {
       const data = {
         coord: gameUtil.randomCoord(),
         uID: gameUtil.circleID()
@@ -26,7 +27,7 @@ module.exports = (server) => {
 
       setTimeout(() => {
         io.emit('delete', data.uID);
-      }, 2350);
+      }, 800);
     }, 800);
 
     // handle mouse event data
@@ -56,6 +57,7 @@ module.exports = (server) => {
     // delete on disconnection
     client.on('disconnect', () => {
       delete gameState[client.id];
+      clearInterval(interval);
       io.emit('socket-disconnect', client.id);
     });
 
