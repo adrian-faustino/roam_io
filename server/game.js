@@ -1,3 +1,7 @@
+const BOARD_WIDTH = 600;
+const BOARD_HEIGHT = 600;
+const CIRCLE_CIRCUMFERENCE = 50;
+
 const generateRandomNumber = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -6,8 +10,8 @@ const generateRandomNumber = (min, max) => {
 
 const randomCoord = () => {
   const data = {
-    x: generateRandomNumber(0, 600),
-    y: generateRandomNumber(0, 600)
+    x: Math.random() * (BOARD_HEIGHT - CIRCLE_CIRCUMFERENCE),
+    y: Math.random() * (BOARD_WIDTH - CIRCLE_CIRCUMFERENCE)
   };
 
   return data

@@ -9,19 +9,22 @@ body {
 }
 
 .game-board {
-  position: relative;
-  top: 150px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 600px;
   width: 600px;
-  margin: 0 auto; 
+  margin: auto; 
   background-color: rgba(66, 65, 65, 0.486);
+  cursor: none;
 }
 
 /* circle style and animation */
 .circle {
-  --radius: 50px;
-  height: var(--radius);
-  width: var(--radius);
+  --circumference: 50px;
+  height: var(--circumference);
+  width: var(--circumference);
   border-radius: 50%;
   background-color: rgba(0, 128, 0, 0.87);
   position: absolute;

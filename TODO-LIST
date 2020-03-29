@@ -1,8 +1,8 @@
 [X] change ever user mouse to show up on each others' screens
   [X] remove on disconnect
-[] as client logs in, show make them enter name
+[?] as client logs in, show make them enter name
 [X] add username near cursor (move span around)
-  [] sanitize userinput
+  [x] sanitize userinput
 [] show client name and score on bottom (UI at the bottom like sc2)
 [] validate ID so no 2 circles repeat
 [] add circle animation (growing larger until dissapears)
