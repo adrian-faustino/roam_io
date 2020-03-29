@@ -62,6 +62,7 @@ socket.on('delete', data => {
 // delete socks that disconnected
 socket.on('socket-disconnect', data => {
   miceDB[data].remove();
+  $(`li#${data}`).remove();
   delete miceDB[data];
 });
 
