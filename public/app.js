@@ -36,7 +36,8 @@ socket.on('drawThis', data => {
     const span = document.createElement('span');
     span.style.position = 'absolute';
     span.style.pointerEvents = 'none';
-    span.textContent = '🔥' + data.userID;
+    span.style.color = 'white';
+    span.textContent = '🔥' + 'Anonymous';
     miceDB[data.userID] = span;
     mouse = span;
     document.body.appendChild(span);

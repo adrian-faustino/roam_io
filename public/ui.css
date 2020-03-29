@@ -1,0 +1,71 @@
+/* UI */
+.UI {
+  position: fixed;
+  top: 0;
+  padding: 5px;
+  border: 2px solid white;
+  min-height: 100vh;
+  background-color: silver;
+}
+
+.user {
+  height: min-content;
+  width: 100%;
+  border-radius: 5pxpx;
+  display: grid;
+  grid-row: auto;
+  margin: 5px 0;
+}
+
+.user > span {
+  border:1px solid white;
+  display: block;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Submission form */
+.form-container {
+  display: grid;
+  height: auto;
+  width: min-content;
+  border-radius: 5px;
+  padding: 10px;
+  border: 2px solid white;
+  background-color: silver;
+}
+
+#username {
+  height: 35px;
+  width: 300px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: inset 0 0 5px black;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  margin: 10px 0;
+}
+
+.form-container > form > label {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.submit-button {
+  height: auto;
+  width: min-content;
+  font-weight: bold;
+  font-size: 25px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}

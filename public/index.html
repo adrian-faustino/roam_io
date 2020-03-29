@@ -7,6 +7,7 @@
   <title>Client/Server Practice</title>
   <!-- CSS -->
   <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="ui.css">
 
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -19,12 +20,29 @@
   <div class="game-board">
     <!-- <div class="circle pop"></div> -->
   </div>
-  <div class="form-container">
-    <form class="user-info-form">
-      <label for="username">Name your cursor!</label>
-      <input type="text" id="username" name="username" placeholder="corona_killer" autocomplete="off" require>
-      <button class="submit-button" type="submit">SET</button>
-    </form>
-  </div>
+  <section class="UI">
+    <div class="form-container">
+      <form class="user-info-form">
+        <label for="username">Name your cursor!</label>
+        <input type="text" id="username" name="username" placeholder="corona_killer" autocomplete="off" require>
+        <button class="submit-button" type="submit">SET</button>
+      </form>
+    </div>
+
+    <div class="leaderboard">
+      <div class="user">
+        <span>Username: Anonymous </span>
+        <span class="score">Score: </span>
+      </div>
+      <ol>
+        <li>
+          hi
+        </li>
+        <li>
+          hi
+        </li>
+      </ol>
+    </div>
+  </section>
 </body>
 </html>
