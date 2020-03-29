@@ -34,8 +34,18 @@ module.exports = (server) => {
       io.emit('drawThis', data);
     });
 
+    // when user clicks a circle, it transmit deletion of div with ID to all clients
     client.on('delete', data => {
       io.emit('delete', data);
+    });
+
+    // change username of cursor
+    client.on('change-username', username => {
+      const data = {
+        username: username,
+        userID: client.id
+      };
+      io.emit('change-username', data);
     });
 
     // delete on disconnection

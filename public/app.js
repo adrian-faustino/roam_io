@@ -2,6 +2,7 @@
 
 const socket = io();
 const miceDB = {};
+const clientData = {};
 
 // generate circle provided by server
 socket.on('generateCircle', data => {
@@ -54,7 +55,23 @@ socket.on('socket-disconnect', data => {
   delete miceDB[data];
 });
 
+// change mouse cursor name
+$('.submit-button').on('click', e => {
+  e.preventDefault();
+  const userInput = $('#username').val();
+  socket.emit('change-username', userInput);
+});
+
+socket.on('change-username', data => {
+  console.log(miceDB);
+  $(miceDB[data.userID])
+    .text(`🔥 ${data.username}`)
+    .css('color', 'white')
+    .css('font-weight', 'bold')
+});
+
+// helper functions
 function updatePos(element, coord) {
-  element.style.top = coord.y + 'px';
-  element.style.left = coord.x + 'px';
+    element.style.top = coord.y + 'px';
+    element.style.left = coord.x + 'px';
 }
