@@ -22,6 +22,52 @@ body {
   height: var(--radius);
   width: var(--radius);
   border-radius: 50%;
-  background-color: rgba(34, 184, 235, 0.849);
+  background-color: rgba(0, 128, 0, 0.87);
   position: absolute;
+}
+
+/* user input */
+.form-container {
+  display: grid;
+  height: auto;
+  width: min-content;
+  border-radius: 5px;
+  padding: 10px;
+  border: 2px solid white;
+  position: fixed;
+  left: 30px;
+  top: 50px;
+  background-color: silver;
+}
+
+#username {
+  height: 35px;
+  width: 300px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: inset 0 0 5px black;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  margin: 10px 0;
+}
+
+.form-container > form > label {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.submit-button {
+  height: auto;
+  width: min-content;
+  font-weight: bold;
+  font-size: 25px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  outline: none;
 }

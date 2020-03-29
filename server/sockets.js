@@ -25,6 +25,7 @@ module.exports = (server) => {
       }, 2350);
     }, 800);
 
+    // handle mouse event data
     client.on('coordinate', coord => {
       const data = {
         coord,
@@ -35,6 +36,11 @@ module.exports = (server) => {
 
     client.on('delete', data => {
       io.emit('delete', data);
+    });
+
+    // delete on disconnection
+    client.on('disconnect', () => {
+      io.emit('socket-disconnect', client.id);
     });
   });
 };

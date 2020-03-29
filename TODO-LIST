@@ -1,4 +1,5 @@
 [X] change ever user mouse to show up on each others' screens
+  [X] remove on disconnect
 [] as client logs in, show make them enter name
 [] add username near cursor (move span around)
 [] show client name and score on bottom (UI at the bottom like sc2)

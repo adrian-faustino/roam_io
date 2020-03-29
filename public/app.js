@@ -48,8 +48,13 @@ socket.on('delete', data => {
   $(`#${data}`).remove();
 });
 
+// delete socks that disconnected
+socket.on('socket-disconnect', data => {
+  miceDB[data].remove();
+  delete miceDB[data];
+});
+
 function updatePos(element, coord) {
   element.style.top = coord.y + 'px';
   element.style.left = coord.x + 'px';
-  console.log(coord.x, coord.y);
 }
