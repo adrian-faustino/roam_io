@@ -2,7 +2,6 @@
 
 const socket = io();
 const miceDB = {};
-const clientData = {}; // store user score here later?
 let userScore = 0;
 
 // generate circle provided by server
@@ -21,6 +20,9 @@ socket.on('generateCircle', data => {
     socket.emit('update-score', userScore);
     popAnimation(newDiv);
     socket.emit('delete', data.uID);
+
+    // update client side score
+    $('.self-score').text(`Your Score: ${userScore}`);
   });
 });
 
@@ -36,7 +38,6 @@ $('.game-board').on('mousemove', e => {
 socket.on('drawThis', data => {
   let mouse = miceDB[data.userID];
   if (!mouse) {
-    console.log('Created new!');
     const span = document.createElement('span');
     span.style.position = 'absolute';
     span.style.pointerEvents = 'none';
@@ -69,10 +70,12 @@ $('.submit-button').on('click', e => {
   e.preventDefault();
   const userInput = $('#username').val();
   socket.emit('change-username', userInput);
+
+  // update client side username
+  $('.self-username').text(`Username: ${userInput}`);
 });
 
 socket.on('change-username', data => {
-  console.log(miceDB);
   $(miceDB[data.userID])
     .text(`🔥 ${data.username}`)
     .css('color', 'white')
@@ -81,7 +84,6 @@ socket.on('change-username', data => {
 
 // recieve game state
 socket.on('game-state', data => {
-  console.log('Game state: ', data);
   for (let clientID in data) {
     let li = document.getElementById(clientID);
     if (!li) {
