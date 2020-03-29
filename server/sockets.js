@@ -10,9 +10,11 @@ module.exports = (server) => {
   const gameState = {};
 
   io.on('connection', (client) => {
-    // console.log(`Connection from client with ID: ${client.id}.`);
-    gameState[client.id] = { username: 'Anonymous'};
-    console.log(gameState);
+    console.log(`Connection from client with ID: ${client.id}.`);
+    gameState[client.id] = {
+      username: 'Anonymous',
+      score: 0
+    };
     
     // generate and delete circle for everyone
     setInterval(() => {
@@ -43,7 +45,7 @@ module.exports = (server) => {
 
     // change username of cursor
     client.on('change-username', username => {
-      gameState[client.id] = { username: `${username}` };
+      gameState[client.id].username = username;
       const data = {
         username: username,
         userID: client.id
@@ -57,9 +59,14 @@ module.exports = (server) => {
       io.emit('socket-disconnect', client.id);
     });
 
+    // recieve client score and add to DB
+    client.on('update-score', data => {
+      gameState[client.id].score = data;
+    });
+
     // broadcast gameState
     setInterval(() => {
       io.emit('game-state', gameState);
-    }, 3000);
+    }, 1000 / 30);
   });
 };

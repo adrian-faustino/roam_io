@@ -3,7 +3,7 @@
 const socket = io();
 const miceDB = {};
 const clientData = {}; // store user score here later?
-let useScore = 0;
+let userScore = 0;
 
 // generate circle provided by server
 socket.on('generateCircle', data => {
@@ -16,6 +16,9 @@ socket.on('generateCircle', data => {
 
   // pop on click - transmit
   newDiv.on('click', () => {
+    // send score
+    userScore++;
+    socket.emit('update-score', userScore);
     popAnimation(newDiv);
     socket.emit('delete', data.uID);
   });
@@ -84,7 +87,7 @@ socket.on('game-state', data => {
     if (!li) {
       li = addEntry(clientID);
     }
-    $(li).text(data[clientID].username);
+    $(li).text(`${data[clientID].username} - ${data[clientID].score}`);
   }
 });
 
